@@ -58,11 +58,6 @@ defmodule NervesSshShell.IEx.Daemon do
       File.dir?("/etc/ssh") ->
         to_charlist("/etc/ssh")
 
-      # Application.get_env(:nerves_ssh_shell, :ephemeral_server_key) != nil ->
-      #   << i :: integer-size(64) >> = << :rand.normal() :: float >>
-      #   :ok = File.mkdir(file_path = '/tmp/ssh-#{Integer.to_string(32)}/')
-      #   to_charlist(file_path)
-
       true ->
         :code.priv_dir(:nerves_ssh_shell)
     end

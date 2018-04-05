@@ -6,13 +6,6 @@ defmodule NervesSshShell.SSH.Keys do
 
   def host_key(algorithm, options) do
     cond do
-      ### Commenting this out for now, ephemeral keys don't really provide any benefits against MITM style attacks... 
-      # algorithm == :"ssh-rsa" && algorithm == @ephemeral_server_key ->
-      #   IO.inspect {algorithm}, label: :host_key
-      #   IO.inspect self(), label: :host_key_pid
-      #   rsa_key = :public_key.generate_key {:rsa, 2048, 3}
-      #   Process.put(:ephemeral_key, rsa_key)
-      #   {:ok, rsa_key}
 
       algorithm in @supported_keys ->
         IO.inspect {algorithm}, label: :host_key
