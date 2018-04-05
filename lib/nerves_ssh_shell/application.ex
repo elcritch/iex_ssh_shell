@@ -9,7 +9,7 @@ defmodule NervesSshShell.Application do
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: NervesSshShell.Worker.start_link(arg)
-      # {NervesSshShell.Worker, arg},
+      {NervesSshShell.IEx.Daemon, [restart: :transient]},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
