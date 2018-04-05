@@ -7,11 +7,9 @@ defmodule IExSshShell.SSH.Keys do
     cond do
 
       algorithm in @supported_keys ->
-        IO.inspect {algorithm}, label: :host_key
-        IO.inspect :ssh_file.host_key(algorithm, options), label: :ssh_file_host_key
+        :ssh_file.host_key(algorithm, options)
 
       true ->
-        IO.inspect {algorithm}, label: :ignored_host_key
         {:error, {:badmatch, {:error, :eacces}}}
     end
 

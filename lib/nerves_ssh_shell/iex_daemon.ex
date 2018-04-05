@@ -20,7 +20,6 @@ defmodule IExSshShell.IEx.Daemon do
     authorized_keys =
       Application.get_env(:iex_ssh_shell, :authorized_keys, [])
       |> Enum.join("\n")
-      |> IO.inspect(label: :authorized_keys)
 
     decoded_authorized_keys = :public_key.ssh_decode(authorized_keys, :auth_keys)
 
@@ -36,7 +35,7 @@ defmodule IExSshShell.IEx.Daemon do
       {:user_dir, sys_dir },
       {:auth_methods, 'publickey' },
       {:shell, {Elixir.IEx, :start, []}},
-    ] |> IO.inspect(label: :ssh_opts)
+    ] 
 
     with {:ok, _ref} <- :ssh.daemon port, opts do
       {:ok, %{}}
