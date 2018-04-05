@@ -31,7 +31,8 @@ defmodule IExSshShell.MixProject do
     [
       maintainers: ["Jaremy Creechley <creechley@gmail.com>"],
       licenses: ["Apache-2.0"],
-      links: %{"GitHub" => "https://github.com/elcritch/iex_ssh_shell"}
+      links: %{"GitHub" => "https://github.com/elcritch/iex_ssh_shell"},
+      files: ["lib/", "priv/", "README", "mix.exs", "config/"]
     ]
   end
 
