@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure your application as:
 #
-#     config :nerves_ssh_shell, key: :value
+#     config :iex_ssh_shell, key: :value
 #
 # and access this configuration in your application as:
 #
-#     Application.get_env(:nerves_ssh_shell, :key)
+#     Application.get_env(:iex_ssh_shell, :key)
 #
 # You can also configure a 3rd-party app:
 #

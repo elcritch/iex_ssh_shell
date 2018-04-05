@@ -15,10 +15,10 @@ defmodule NervesSshShell.IEx.Daemon do
   ## Server Callbacks
 
   def init(:ok) do
-    port = Application.get_env(:nerves_ssh_shell, :port, 2222)
+    port = Application.get_env(:iex_ssh_shell, :port, 2222)
 
     authorized_keys =
-      Application.get_env(:nerves_ssh_shell, :authorized_keys, [])
+      Application.get_env(:iex_ssh_shell, :authorized_keys, [])
       |> Enum.join("\n")
       |> IO.inspect(label: :authorized_keys)
 
@@ -52,14 +52,14 @@ defmodule NervesSshShell.IEx.Daemon do
 
   def system_dir() do
     sys_dir = cond do
-      system_dir = Application.get_env(:nerves_ssh_shell, :system_dir) ->
+      system_dir = Application.get_env(:iex_ssh_shell, :system_dir) ->
         to_charlist(system_dir)
 
       File.dir?("/etc/ssh") ->
         to_charlist("/etc/ssh")
 
       true ->
-        :code.priv_dir(:nerves_ssh_shell)
+        :code.priv_dir(:iex_ssh_shell)
     end
     Logger.info "Configured with SSH Directory: #{sys_dir}"
     sys_dir

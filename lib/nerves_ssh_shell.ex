@@ -8,12 +8,12 @@ defmodule NervesSshShell do
 
   This is useful to avoid the pitfalls with using disterl for many embedded device scenarios.
 
-  Configuration is handled by settings `:nerves_ssh_shell` configuration options in your project's config.exs.
+  Configuration is handled by settings `:iex_ssh_shell` configuration options in your project's config.exs.
 
   Example:
 
   ```elixir
-  config :nerves_ssh_shell,
+  config :iex_ssh_shell,
   system_dir: "/etc/ssh",
   port: 2222,
   authorized_keys: [

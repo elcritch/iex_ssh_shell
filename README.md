@@ -5,12 +5,12 @@ NervesSshShell provides a simple OTP application which runs an SSH server for re
 
 This is useful to avoid the pitfalls with using disterl for many embedded device scenarios.
 
-Configuration is handled by settings `:nerves_ssh_shell` configuration options in your project's config.exs. 
+Configuration is handled by settings `:iex_ssh_shell` configuration options in your project's config.exs. 
 
 Example:
 
 ```elixir
-config :nerves_ssh_shell,
+config :iex_ssh_shell,
   system_dir: "/etc/ssh",
   port: 2222,
   authorized_keys: [
@@ -24,17 +24,17 @@ config :nerves_ssh_shell,
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `nerves_ssh_shell` to your list of dependencies in `mix.exs`:
+by adding `iex_ssh_shell` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:nerves_ssh_shell, "~> 0.1.0"}
+    {:iex_ssh_shell, "~> 0.1.0"}
   ]
 end
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/nerves_ssh_shell](https://hexdocs.pm/nerves_ssh_shell).
+be found at [https://hexdocs.pm/iex_ssh_shell](https://hexdocs.pm/iex_ssh_shell).
 

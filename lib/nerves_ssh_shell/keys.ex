@@ -1,7 +1,7 @@
 defmodule NervesSshShell.SSH.Keys do
   @moduledoc false
 
-  @supported_keys Application.get_env(:nerves_ssh_shell, :supported_keys, [:"rsa-sha2-256", :"rsa-sha2-512", :"ssh-rsa", :"ecdsa-sha2-nistp256", "ecdsa-sha2-nistp384", "ecdsa-sha2-nistp521"])
+  @supported_keys Application.get_env(:iex_ssh_shell, :supported_keys, [:"rsa-sha2-256", :"rsa-sha2-512", :"ssh-rsa", :"ecdsa-sha2-nistp256", "ecdsa-sha2-nistp384", "ecdsa-sha2-nistp521"])
 
   def host_key(algorithm, options) do
     cond do

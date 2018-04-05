@@ -9,7 +9,7 @@ defmodule NervesSshShell.MixProject do
 
   def project do
     [
-      app: :nerves_ssh_shell,
+      app: :iex_ssh_shell,
       version: @version,
       description: @description,
       elixir: "~> 1.6",
@@ -31,7 +31,7 @@ defmodule NervesSshShell.MixProject do
     [
       maintainers: ["Jaremy Creechley <creechley@gmail.com>"],
       licenses: ["Apache-2.0"],
-      links: %{"GitHub" => "https://github.com/elcritch/nerves_ssh_shell"}
+      links: %{"GitHub" => "https://github.com/elcritch/iex_ssh_shell"}
     ]
   end
 
