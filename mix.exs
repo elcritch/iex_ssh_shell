@@ -1,4 +1,4 @@
-defmodule NervesSshShell.MixProject do
+defmodule IExSshShell.MixProject do
   use Mix.Project
 
   @version "0.1.0"
@@ -23,7 +23,7 @@ defmodule NervesSshShell.MixProject do
   def application do
     [
       extra_applications: [:logger, :public_key, :ssh],
-      mod: {NervesSshShell.Application, []}
+      mod: {IExSshShell.Application, []}
     ]
   end
 

@@ -1,4 +1,4 @@
-defmodule NervesSshShell.IEx.Daemon do
+defmodule IExSshShell.IEx.Daemon do
   @moduledoc false
 
   use GenServer
@@ -31,7 +31,7 @@ defmodule NervesSshShell.IEx.Daemon do
     opts = [
       {:max_sessions, 1},
       {:id_string, :random},
-      {:key_cb, {NervesSshShell.SSH.Keys, cb_opts}},
+      {:key_cb, {IExSshShell.SSH.Keys, cb_opts}},
       {:system_dir, sys_dir},
       {:user_dir, sys_dir },
       {:auth_methods, 'publickey' },

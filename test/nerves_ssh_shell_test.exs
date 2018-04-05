@@ -1,8 +1,8 @@
-defmodule NervesSshShellTest do
+defmodule IExSshShellTest do
   use ExUnit.Case
-  doctest NervesSshShell
+  doctest IExSshShell
 
   test "greets the world" do
-    assert NervesSshShell.hello() == :world
+    assert IExSshShell.hello() == :world
   end
 end

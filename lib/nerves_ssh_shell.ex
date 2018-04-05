@@ -1,10 +1,10 @@
-defmodule NervesSshShell do
+defmodule IExSshShell do
   @moduledoc """
-  NervesSshShell provides a simple OTP application which runs an SSH server for remote IEx shells.
+  IExSshShell provides a simple OTP application which runs an SSH server for remote IEx shells.
 
   This is useful to avoid the pitfalls with using disterl for many embedded device scenarios.
 
-  NervesSshShell provides a simple OTP application which runs an SSH server for remote IEx shells.
+  IExSshShell provides a simple OTP application which runs an SSH server for remote IEx shells.
 
   This is useful to avoid the pitfalls with using disterl for many embedded device scenarios.
 

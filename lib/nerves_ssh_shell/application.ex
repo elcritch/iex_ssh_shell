@@ -1,4 +1,4 @@
-defmodule NervesSshShell.Application do
+defmodule IExSshShell.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -8,13 +8,13 @@ defmodule NervesSshShell.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: NervesSshShell.Worker.start_link(arg)
-      {NervesSshShell.IEx.Daemon, [restart: :transient]},
+      # Starts a worker by calling: IExSshShell.Worker.start_link(arg)
+      {IExSshShell.IEx.Daemon, [restart: :transient]},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: NervesSshShell.Supervisor]
+    opts = [strategy: :one_for_one, name: IExSshShell.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
