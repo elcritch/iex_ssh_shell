@@ -1,18 +1,8 @@
 defmodule NervesSshShell do
   @moduledoc """
-  Documentation for NervesSshShell.
+  NervesSshShell provides a simple OTP application which runs an SSH server for remote IEx shells.
+
+  This is useful to avoid the pitfalls with using disterl for many embedded device scenarios.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> NervesSshShell.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end

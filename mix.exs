@@ -10,7 +10,8 @@ defmodule NervesSshShell.MixProject do
   def project do
     [
       app: :nerves_ssh_shell,
-      version: "0.1.0",
+      version: @version,
+      description: @description,
       elixir: "~> 1.6",
       package: package(),
       start_permanent: Mix.env() == :prod,
@@ -35,6 +36,8 @@ defmodule NervesSshShell.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:ex_doc, ">= 0.0.0", only: :dev},
+    ]
   end
 end
