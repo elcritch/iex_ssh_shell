@@ -54,6 +54,7 @@ defmodule IExSshShell.IEx.Daemon do
 
   def on_shell_connect(username, {ip, port} = peer_address, method) do
     IO.puts("doshell: #{inspect username}")
+    Logger.error("shell connect: #{inspect username}")
     handler_module = Application.fetch_env!(:iex_ssh_shell, :handler)
 
     spawn(Module.concat([handler_module]),
