@@ -51,8 +51,9 @@ defmodule IExSshShell.IEx.Daemon do
   end
 
   def do_shell(username, {ip, port} = peer_address) do
-    {_master_pid, session} = Sessions.get_by_peer_address(peer_address)
-    ssh_publickey = Map.get(session, "public_key")
+    # {_master_pid, session} = Sessions.get_by_peer_address(peer_address)
+    # ssh_publickey = Map.get(session, "public_key")
+    ssh_publickey = ""
 
     # Create new Process and delegate connection
     shell_handler = Application.fetch_env!(:iex_ssh_shell, :handler) || {Elixir.IEx, :start, []}
