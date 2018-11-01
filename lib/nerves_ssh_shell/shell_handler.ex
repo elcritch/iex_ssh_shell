@@ -1,10 +1,10 @@
 
-defmodule IExSshShell.ShellHandler.ShellHandler do
+defmodule IExSshShell.ShellHandler do
   # From: https://github.com/jbenden/esshd 
   
   @moduledoc """
   As incoming SSH connections are accepted, authorized, and request remote
-  shell services; they are passed to the `c:IExSshShell.ShellHandler.ShellHandler.on_shell/4`
+  shell services; they are passed to the `c:IExSshShell.ShellHandler.on_shell/4`
   callback.
   """
 
@@ -18,7 +18,7 @@ defmodule IExSshShell.ShellHandler.ShellHandler do
   @doc false
   defmacro __using__(_opts) do
     quote do
-      @behaviour IExSshShell.ShellHandler.ShellHandler
+      @behaviour IExSshShell.ShellHandler
 
       require Logger
 
@@ -29,7 +29,7 @@ defmodule IExSshShell.ShellHandler.ShellHandler do
       @type peer_address :: {ip_address, port_number}
       @type method :: String.t
 
-      @before_compile IExSshShell.ShellHandler.ShellHandler
+      @before_compile IExSshShell.ShellHandler
     end
   end
 
@@ -88,19 +88,19 @@ defmodule IExSshShell.ShellHandler.ShellHandler do
   end
 end
 
-defmodule IExSshShell.ShellHandler.ShellHandler.Elixir do
+defmodule IExSshShell.ShellHandler.Elixir do
   @moduledoc """
-  An implementation of `IExSshShell.ShellHandler.ShellHandler` which starts an Elixir REPL.
+  An implementation of `IExSshShell.ShellHandler` which starts an Elixir REPL.
 
   ## Usage
 
   Add the following configuration to your application:
 
       config :esshd,
-        handler: "IExSshShell.ShellHandler.ShellHandler.Elixir"
+        handler: "IExSshShell.ShellHandler.Elixir"
 
   """
-  use IExSshShell.ShellHandler.ShellHandler
+  use IExSshShell.ShellHandler
   require IEx
 
   def on_shell(_username, _pubkey, _ip_address, _port_number) do
@@ -111,19 +111,19 @@ defmodule IExSshShell.ShellHandler.ShellHandler.Elixir do
   def on_disconnect(_username, _ip_address, _port_number), do: :ok
 end
 
-defmodule IExSshShell.ShellHandler.ShellHandler.Erlang do
+defmodule IExSshShell.ShellHandler.Erlang do
   @moduledoc """
-  An implementation of `IExSshShell.ShellHandler.ShellHandler` which starts an Erlang REPL.
+  An implementation of `IExSshShell.ShellHandler` which starts an Erlang REPL.
 
   ## Usage
 
   Add the following configuration to your application:
 
       config :esshd,
-        handler: "IExSshShell.ShellHandler.ShellHandler.Erlang"
+        handler: "IExSshShell.ShellHandler.Erlang"
 
   """
-  use IExSshShell.ShellHandler.ShellHandler
+  use IExSshShell.ShellHandler
 
   def on_shell(_username, _pubkey, _ip_address, _port_number) do
     _ = :shell.start()
