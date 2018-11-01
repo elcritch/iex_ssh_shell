@@ -34,10 +34,10 @@ defmodule IExSshShell.IEx.Daemon do
       {:system_dir, sys_dir},
       {:user_dir, sys_dir },
       {:auth_methods, 'publickey' },
-      # {:shell, {Elixir.IEx, :start, []}},
+      {:shell, {Elixir.IEx, :start, []}},
       {:failfun, &on_shell_unauthorized/3},
       {:connectfun, &on_shell_connect/3},
-      {:shell, &do_shell/2},
+      # {:shell, &do_shell/2},
     ] 
 
     with {:ok, _ref} <- :ssh.daemon port, opts do
