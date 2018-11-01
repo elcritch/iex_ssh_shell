@@ -65,7 +65,11 @@ defmodule IExSshShell.ShellHandler do
                      ssh_publickey,
                      ip_address,
                      port_number) :: :ok | {:error, any}
-      def incoming(username, ssh_publickey, ip_address, port_number) do
+      def incoming(username) do
+        ssh_publickey = ""
+        ip_address = {0, 0, 0, 0}
+        port_number = 0
+
         group_leader = Process.group_leader
 
         _ = :io.setopts(group_leader, binary: true, encoding: :unicode)
