@@ -61,11 +61,11 @@ defmodule IExSshShell.ShellHandler do
   defmacro __before_compile__(_env) do
     quote do
       @doc false
-      def incoming(username) do
-        ssh_publickey = ""
-        ip_address = {0, 0, 0, 0}
-        port_number = 0
-
+      @spec incoming(username,
+                     ssh_publickey,
+                     ip_address,
+                     port_number) :: :ok | {:error, any}
+      def incoming(username, ssh_publickey, ip_address, port_number) do
         group_leader = Process.group_leader
 
         _ = :io.setopts(group_leader, binary: true, encoding: :unicode)
