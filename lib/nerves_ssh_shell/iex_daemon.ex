@@ -35,7 +35,7 @@ defmodule IExSshShell.IEx.Daemon do
       {:user_dir, sys_dir },
       {:auth_methods, 'publickey' },
       # {:shell, {Elixir.IEx, :start, []}},
-      {:shell, &do_shell/2},
+      {:shell, &do_shell/1},
     ] 
 
     with {:ok, _ref} <- :ssh.daemon port, opts do
@@ -50,15 +50,14 @@ defmodule IExSshShell.IEx.Daemon do
     end
   end
 
-  def do_shell(username, {ip, port} = peer_address) do
-    # {_master_pid, session} = Sessions.get_by_peer_address(peer_address)
-    # ssh_publickey = Map.get(session, "public_key")
-    ssh_publickey = ""
+  def do_shell(username) do
 
     # Create new Process and delegate connection
-    shell_handler = Application.fetch_env!(:iex_ssh_shell, :handler) || {Elixir.IEx, :start, []}
+    shell_handler = Application.fetch_env!(:iex_ssh_shell, :handler)
 
-    IO.puts("doshell: #{inspect username}, #{inspect ssh_publickey}, #{inspect ip}, #{inspect port}, #{inspect shell_handler}")
+    IO.puts("doshell: #{inspect username}")
+    Logger.error("starting shell for  #{inspect username}, #{inspect shell_handler}")
+
     spawn_link(
       shell_handler,
       :incoming,
