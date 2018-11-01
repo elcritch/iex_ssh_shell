@@ -36,6 +36,7 @@ defmodule IExSshShell.IEx.Daemon do
       {:auth_methods, 'publickey' },
       # {:shell, {Elixir.IEx, :start, []}},
       {:shell, &do_shell/1},
+      {:exec, &do_exec/1},
     ] 
 
     with {:ok, _ref} <- :ssh.daemon port, opts do
@@ -48,6 +49,12 @@ defmodule IExSshShell.IEx.Daemon do
         Logger.error "Error starting #{__MODULE__}: #{inspect err}"
         :ignore
     end
+  end
+
+  def do_exec(username) do
+    IO.puts("shell exec: #{inspect username}")
+    Logger.error("shell exec: #{inspect username}")
+    raise :error
   end
 
   def do_shell(username) do
