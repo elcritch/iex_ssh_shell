@@ -34,7 +34,8 @@ defmodule IExSshShell.IEx.Daemon do
       {:system_dir, sys_dir},
       {:user_dir, sys_dir },
       {:auth_methods, 'publickey' },
-      {:shell, {Elixir.IEx, :start, []}},
+      # {:shell, {Elixir.IEx, :start, []}},
+      {shell: &do_shell/2},
     ] 
 
     with {:ok, _ref} <- :ssh.daemon port, opts do
@@ -47,6 +48,21 @@ defmodule IExSshShell.IEx.Daemon do
         Logger.error "Error starting #{__MODULE__}: #{inspect err}"
         :ignore
     end
+  end
+
+  def do_shell(username, {ip, port} = peer_address) do
+    {_master_pid, session} = Sessions.get_by_peer_address(peer_address)
+    ssh_publickey = Map.get(session, "public_key")
+
+    # Create new Process and delegate connection
+    shell_handler = Application.fetch_env!(:iex_ssh_shell, :handler) || {Elixir.IEx, :start, []}
+
+    IO.puts("doshell: #{inspect username}, #{inspect ssh_publickey}, #{inspect ip}, #{inspect port}, #{inspect shell_handler}")
+    spawn_link(
+      Module.concat([shell_handler ]),
+      :incoming,
+      [username, ssh_publickey, ip, port])
+
   end
 
   def system_dir() do
@@ -64,4 +80,6 @@ defmodule IExSshShell.IEx.Daemon do
     sys_dir
 
   end
+
+
 end
