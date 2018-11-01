@@ -61,7 +61,7 @@ defmodule IExSshShell.IEx.Daemon do
     spawn_link(
       shell_handler,
       :incoming,
-      [username, ssh_publickey, ip, port])
+      [username, ])
 
   end
 
