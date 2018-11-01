@@ -34,7 +34,7 @@ defmodule IExSshShell.IEx.Daemon do
       {:system_dir, sys_dir},
       {:user_dir, sys_dir },
       {:auth_methods, 'publickey' },
-      {:shell, {Elixir.IEx, :start, []}},
+      # {:shell, {Elixir.IEx, :start, []}},
       {:shell, {Application.fetch_env!(:iex_ssh_shell, :handler), :start, []}},
       {:failfun, &on_shell_unauthorized/3},
       {:connectfun, &on_shell_connect/3},
