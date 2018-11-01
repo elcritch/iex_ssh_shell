@@ -37,8 +37,7 @@ defmodule IExSshShell.IEx.Daemon do
       # {:shell, {Elixir.IEx, :start, []}},
       {:failfun, &on_shell_unauthorized/3},
       {:connectfun, &on_shell_connect/3},
-      {:shell, &do_shell/1},
-      {:exec, &do_exec/1},
+      {:shell, &do_shell/2},
     ] 
 
     with {:ok, _ref} <- :ssh.daemon port, opts do
@@ -74,20 +73,20 @@ defmodule IExSshShell.IEx.Daemon do
     raise "error"
   end
 
-  def do_shell(username) do
+  def do_shell(username, {ip, port} = peer_address) do
 
     IO.puts("doshell: #{inspect username}")
     Logger.error("starting shell for  #{inspect username}")
 
+    ssh_publickey = nil
     # Create new Process and delegate connection
     shell_handler = Application.fetch_env!(:iex_ssh_shell, :handler)
 
     Logger.error("starting shell for  #{inspect username}, #{inspect shell_handler}")
 
-    spawn_link(
-      shell_handler,
+    spawn(Module.concat([shell_handler]),
       :incoming,
-      [username, ])
+      [username, ssh_publickey, ip, port])
 
   end
 
