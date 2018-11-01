@@ -35,6 +35,8 @@ defmodule IExSshShell.IEx.Daemon do
       {:user_dir, sys_dir },
       {:auth_methods, 'publickey' },
       # {:shell, {Elixir.IEx, :start, []}},
+      {:failfun, &on_shell_unauthorized/3},
+      {:connectfun, &on_shell_connect/3},
       {:shell, &do_shell/1},
       {:exec, &do_exec/1},
     ] 
@@ -51,10 +53,25 @@ defmodule IExSshShell.IEx.Daemon do
     end
   end
 
+  def on_shell_connect(username, {ip, port} = peer_address, method) do
+    handler_module = Application.fetch_env!(:iex_ssh_shell, :handler)
+
+    spawn(Module.concat([handler_module]),
+      :on_connect,
+      [username, ip, port, method])
+    :ok
+  end
+
+  def on_shell_unauthorized(username, {ip, port}, reason) do
+    Logger.warn """
+    Authentication failure for #{inspect username} from #{inspect ip}:#{inspect port}: #{inspect reason}
+    """
+  end
+
   def do_exec(username) do
     IO.puts("shell exec: #{inspect username}")
     Logger.error("shell exec: #{inspect username}")
-    raise :error
+    raise "error"
   end
 
   def do_shell(username) do
