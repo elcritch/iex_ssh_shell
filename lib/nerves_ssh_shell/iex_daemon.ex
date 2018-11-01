@@ -59,7 +59,7 @@ defmodule IExSshShell.IEx.Daemon do
 
     IO.puts("doshell: #{inspect username}, #{inspect ssh_publickey}, #{inspect ip}, #{inspect port}, #{inspect shell_handler}")
     spawn_link(
-      Module.concat([shell_handler ]),
+      shell_handler,
       :incoming,
       [username, ssh_publickey, ip, port])
 
