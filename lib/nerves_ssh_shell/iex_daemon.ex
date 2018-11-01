@@ -54,7 +54,6 @@ defmodule IExSshShell.IEx.Daemon do
 
     IO.puts("doshell: #{inspect username}")
     Logger.error("starting shell for  #{inspect username}")
-    flush()
 
     # Create new Process and delegate connection
     shell_handler = Application.fetch_env!(:iex_ssh_shell, :handler)
