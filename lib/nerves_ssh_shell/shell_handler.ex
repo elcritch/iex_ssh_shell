@@ -61,10 +61,6 @@ defmodule IExSshShell.ShellHandler do
   defmacro __before_compile__(_env) do
     quote do
       @doc false
-      @spec incoming(username,
-                     ssh_publickey,
-                     ip_address,
-                     port_number) :: :ok | {:error, any}
       def incoming(username) do
         ssh_publickey = ""
         ip_address = {0, 0, 0, 0}
