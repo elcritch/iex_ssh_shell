@@ -28,7 +28,7 @@ defmodule IExSshShell.IEx.Daemon do
     sys_dir = system_dir()
 
     opts = [
-      {:max_sessions, Application.fetch_env!(:iex_ssh_shell, :max_sessions, 1)},
+      {:max_sessions, Application.get_env(:iex_ssh_shell, :max_sessions, 1)},
       {:id_string, :random},
       {:key_cb, {IExSshShell.SSH.Keys, cb_opts}},
       {:system_dir, sys_dir},
