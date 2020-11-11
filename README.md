@@ -28,7 +28,7 @@ It'll default to the private dir for the repo: `:code.priv_dir(:iex_ssh_shell)` 
 
 ```
 config :iex_ssh_shell,
-  system_dir: :code.priv_dir(:my_app)/ssh_key
+  system_dir: :code.priv_dir(:my_app)
 ```
 
 As far as I know, reusing the same key isn't a major security hole as each ssh session negotiates a per session encryption key. 
